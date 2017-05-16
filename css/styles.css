@@ -7,6 +7,7 @@ img {
 }
 html, body{
 background-color: #C3D4D3;
+
 }
 a{
   text-decoration: none;
@@ -142,6 +143,16 @@ main{
 /*Fin home*/
 
 /*login*/
+.log{
+  max-width: 250px;
+  border: 2px solid black;
+  border-radius: 5%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  font-size: 15px;
+  padding: 20px;
+}
 .log p{
   margin-top: 0;
   margin-bottom: 1px;;
@@ -487,6 +498,7 @@ footer img{
 
       border: 3px solid #C3D4D3;
       border-radius: 10px;
+
     }
     /*fin faq*/
 
@@ -518,7 +530,10 @@ footer img{
     .footersect{
       float: left;
     }
-
+    #faqfoot{
+      visibility: visible;
+      position: static;
+    }
     .footer_container {
       width: 80%;
       margin: auto;
