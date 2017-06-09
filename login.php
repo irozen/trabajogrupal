@@ -1,3 +1,21 @@
+<?php
+require_once('requires.php');
+if(isUserLoggedIn()){
+  Header('location: index.php');
+}
+
+$errores = [];
+if ($_POST)
+{
+	$errores = validarLogin($_POST);
+	if(!count($errores))
+	{
+		$errores = loguearUsuario($_POST);
+	}
+}
+
+<?php if (count($errores)){ ?>
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,16 +28,25 @@
   <body>
 
     <header>
-      <h1><a href="./index.html"><img src="./images/baprivateguides.png" alt="logo BA Private Guides" height="120" class="logo"></a></h1>
+      <h1><a href="./index.php"><img src="./images/baprivateguides.png" alt="logo BA Private Guides" height="120" class="logo"></a></h1>
         <h2>Tailor-made tours for the curious traveler</h2>
       <nav>
         <ul>
 
-          <li><a href="./index.html">Home</a></li>
-          <li><a href="./faq.html">FAQ</a></li>
-          <li class="right"><a href="./login.html">Log in</a></li>
-          <li id="separator"class="right">/</li>
-          <li class="right"><a href="./signup.html">Sign up</a></li>
+          <li><a href="./index.php">Home</a></li>
+          <li><a href="./faq.php">FAQ</a></li>
+          <?php
+          if(isUserLoggedIn()){
+            echo '<li class="right>"<img src="'.$_SESSION['user']['avatar'].'" width="20px" ></li>';
+            echo '<li class="right"><a href="logout.php">Logout</a></li>';
+          }
+          else
+          {
+            echo '<li class="right"><a href="./login.php">Log in</a></li>
+            <li id="separator"class="right">/</li>
+            <li class="right"><a href="./signup.php">Sign up</a></li>';
+          }
+          ?>
         </ul>
       </nav>
     </header>
@@ -29,8 +56,8 @@
 <div class="log">
   <form class="" action="" method="post">
 
-      <p><label for="username">User name</label></p>
-      <p><input type="text" name="username" value="" required></p>
+      <p><label for="email">Email</label></p>
+      <p><input type="text" name="email" value="<?php echo(isset($_POST['email']) ? $_POST['email'] : '') ?>" required></p>
       <br>
       <p><label for="pass">Password</label></p>
       <p><input type="text" name="pass" value="" required></p>

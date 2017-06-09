@@ -7,7 +7,7 @@ img {
 }
 html, body{
 background-color: #C3D4D3;
-
+margin: 0;
 }
 a{
   text-decoration: none;
